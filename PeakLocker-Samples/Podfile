@@ -1,0 +1,6 @@
+platform :ios, '5.0'
+
+pod 'UIView+Helpers',  :git => 'https://github.com/conis/UIView-Helpers.git', :branch => 'master'
+pod 'KKGestureLockView',  :git => 'https://github.com/kejinlu/KKGestureLockView.git', :branch => 'master'
+xcodeproj 'PeakLocker-Samples.xcodeproj'
+
