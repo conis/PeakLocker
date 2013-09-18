@@ -32,6 +32,8 @@ typedef enum{
 @property (nonatomic, strong) UILabel *tipsLabel;
 //显示警告
 @property (nonatomic, strong) UILabel *warningLabel;
+//最后的提示时间
+@property (nonatomic, strong) NSDate *tipsDate;
 @end
 
 @implementation PeakLocker
@@ -59,7 +61,7 @@ static PeakLocker *instance;
 
 //初始化默认数据
 -(void) initDefault{
-  self.appNameTextColor = [UIColor colorWithRed:26/255.f green:125/255.f blue:209/255.f alpha:1];
+  self.appNameTextColor = [UIColor colorWithRed:175/255.f green:175/255.f blue:175/255.f alpha:1];
   self.storedPassword = YES;
   self.allowUserChangeLockerType = NO;
   //不限制
@@ -90,8 +92,9 @@ static PeakLocker *instance;
 //创建软件名称的Label
 -(void) createAppNameLabel{
   self.appNameLabel = [[UILabel alloc] init];
-  self.appNameLabel.width = self.headerView.width;
   self.appNameLabel.left = 10;
+  self.appNameLabel.width = self.headerView.width - self.appNameLabel.left * 2;
+  self.appNameLabel.top = 25;
   self.appNameLabel.height = 60;
   self.appNameLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   self.appNameLabel.font = [UIFont boldSystemFontOfSize: 40];
@@ -99,7 +102,6 @@ static PeakLocker *instance;
   self.appNameLabel.textColor = self.appNameTextColor;
   self.appNameLabel.adjustsFontSizeToFitWidth = YES;
   self.appNameLabel.textAlignment = NSTextAlignmentCenter;
-  
   [self.headerView addSubview: self.appNameLabel];
 }
 
@@ -107,15 +109,15 @@ static PeakLocker *instance;
 -(void) createInfoLabel{
   self.tipsLabel = [[UILabel alloc] init];
   self.tipsLabel.top = self.appNameLabel.bottomY;
-  self.tipsLabel.width = self.headerView.width;
-  self.tipsLabel.height = 40;
+  self.tipsLabel.width = self.appNameLabel.width;
+  self.tipsLabel.height = 30;
+  self.tipsLabel.left = self.appNameLabel.left;
+  self.tipsLabel.textColor = [UIColor colorWithRed:102/255.f green:102/255.f blue:102/255.f alpha:1];
   [self.headerView addSubview: self.tipsLabel];
   
-  self.warningLabel = [[UILabel alloc] init];
-  self.warningLabel.top = self.tipsLabel.bottomY;
-  self.warningLabel.width = self.headerView.width;
-  self.warningLabel.height = 20;
-  
+  self.warningLabel = [[UILabel alloc] initWithFrame: self.tipsLabel.frame];
+  self.warningLabel.top = self.tipsLabel.bottomY + 5;
+  self.warningLabel.textColor = [UIColor colorWithRed:4/255.f green:152/255.f blue:213/255.f alpha:1];
   [self.headerView addSubview: self.warningLabel];
 }
 
@@ -161,15 +163,34 @@ static PeakLocker *instance;
   self.tipsLabel.text = tips;
 }
 
+/*
+-(void) hideWarning{
+  if([[NSDate date] timeIntervalSinceDate: self.tipsDate] < 10){
+    return;
+  }
+  
+  [UIView animateWithDuration:0.5 animations:^{
+    self.warningLabel.alpha = 0;
+  }];
+}
+*/
 //设置警告信息
 -(void) setwarning: (NSString *) warning{
   self.warningLabel.text = warning;
+  self.warningLabel.alpha = 1;
+  /*
+  
+  self.tipsDate = [NSDate date];
+  //设置5秒钟后关闭
+  [self performSelector:@selector(hideWarning) withObject:nil afterDelay:10];
+  */
 }
 
 //重置控件的位置，一般在旋转的时候调用
 -(void) resetSubviews{
   //设置模式解锁的位置
-  CGRect rect = CGRectMake(20, self.headerView.bottomY + 50, 280, 280);
+  CGFloat margin = 30;
+  CGRect rect = CGRectMake(margin, self.headerView.bottomY + margin, self.view.width - margin * 2, self.view.height - self.headerView.bottomY - margin * 2);
   self.patternLock.frame = rect;
 }
 
@@ -315,7 +336,9 @@ static PeakLocker *instance;
 
 #pragma mark 模式解锁的委托
 - (void)gestureLockView:(KKGestureLockView *)gestureLockView didBeginWithPasscode:(NSString *)passcode{
-  
+  [UIView animateWithDuration:0.3 animations:^{
+    self.warningLabel.alpha = 0;
+  }];
 }
 
 //手势结束
@@ -345,11 +368,7 @@ static PeakLocker *instance;
   NSString *tips = nil;
   switch (status) {
     case PeakLockerStatusBegin:
-      if(self.type == PeakLockerTypeSignup){
-        tips = @"请设置您的密码";
-      }else{
-        tips = @"您需要授权才能访问";
-      }
+      tips = @"您需要授权才能访问";
       break;
     case PeakLockerStatusNew:  //密码校验通过
       tips = @"请设置您的密码";
