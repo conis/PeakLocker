@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		42A8AFA167C047A98FB2D1F0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71708AE81DB74232A8A59E9A /* libPods.a */; };
+		D2A6C8F117E9F8F90005723D /* peaklocker_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A6C8EF17E9F8F90005723D /* peaklocker_cancel.png */; };
+		D2A6C8F217E9F8F90005723D /* peaklocker_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A6C8F017E9F8F90005723D /* peaklocker_cancel@2x.png */; };
 		D2EFBC8017E898AE00F3E05B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EFBC7F17E898AE00F3E05B /* Foundation.framework */; };
 		D2EFBC8217E898AE00F3E05B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EFBC8117E898AE00F3E05B /* CoreGraphics.framework */; };
 		D2EFBC8417E898AE00F3E05B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EFBC8317E898AE00F3E05B /* UIKit.framework */; };
@@ -27,6 +29,11 @@
 		D2EFBCBB17E8998D00F3E05B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCBA17E8998D00F3E05B /* Podfile */; };
 		D2EFBCBD17E899A300F3E05B /* PeakLocker.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCBC17E899A300F3E05B /* PeakLocker.podspec */; };
 		D2EFBCC017E89B2D00F3E05B /* PeakLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EFBCBF17E89B2D00F3E05B /* PeakLocker.m */; };
+		D2EFBCC617E8A8AB00F3E05B /* gesture_node_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCC217E8A8AB00F3E05B /* gesture_node_normal.png */; };
+		D2EFBCC717E8A8AB00F3E05B /* gesture_node_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCC317E8A8AB00F3E05B /* gesture_node_normal@2x.png */; };
+		D2EFBCC817E8A8AB00F3E05B /* gesture_node_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCC417E8A8AB00F3E05B /* gesture_node_selected.png */; };
+		D2EFBCC917E8A8AB00F3E05B /* gesture_node_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCC517E8A8AB00F3E05B /* gesture_node_selected@2x.png */; };
+		D2EFBCCC17E8B1D300F3E05B /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EFBCCB17E8B1D300F3E05B /* background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,8 @@
 /* Begin PBXFileReference section */
 		71708AE81DB74232A8A59E9A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A002D99EF4BA47029486766E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D2A6C8EF17E9F8F90005723D /* peaklocker_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peaklocker_cancel.png; sourceTree = "<group>"; };
+		D2A6C8F017E9F8F90005723D /* peaklocker_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peaklocker_cancel@2x.png"; sourceTree = "<group>"; };
 		D2EFBC7C17E898AE00F3E05B /* PeakLocker-Samples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeakLocker-Samples.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2EFBC7F17E898AE00F3E05B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2EFBC8117E898AE00F3E05B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,6 +76,11 @@
 		D2EFBCBC17E899A300F3E05B /* PeakLocker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PeakLocker.podspec; path = ../../PeakLocker.podspec; sourceTree = "<group>"; };
 		D2EFBCBE17E89B2D00F3E05B /* PeakLocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakLocker.h; sourceTree = "<group>"; };
 		D2EFBCBF17E89B2D00F3E05B /* PeakLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakLocker.m; sourceTree = "<group>"; };
+		D2EFBCC217E8A8AB00F3E05B /* gesture_node_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture_node_normal.png; sourceTree = "<group>"; };
+		D2EFBCC317E8A8AB00F3E05B /* gesture_node_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture_node_normal@2x.png"; sourceTree = "<group>"; };
+		D2EFBCC417E8A8AB00F3E05B /* gesture_node_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture_node_selected.png; sourceTree = "<group>"; };
+		D2EFBCC517E8A8AB00F3E05B /* gesture_node_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture_node_selected@2x.png"; sourceTree = "<group>"; };
+		D2EFBCCB17E8B1D300F3E05B /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +144,7 @@
 		D2EFBC8517E898AE00F3E05B /* PeakLocker-Samples */ = {
 			isa = PBXGroup;
 			children = (
+				D2EFBCCA17E8B1D300F3E05B /* Resources */,
 				D2EFBC8E17E898AE00F3E05B /* AppDelegate.h */,
 				D2EFBC8F17E898AE00F3E05B /* AppDelegate.m */,
 				D2EFBC9117E898AE00F3E05B /* Main_iPhone.storyboard */,
@@ -177,12 +192,34 @@
 		D2EFBCB917E8996100F3E05B /* PeakLocker */ = {
 			isa = PBXGroup;
 			children = (
+				D2EFBCC117E8A8AB00F3E05B /* Resources */,
 				D2EFBCBE17E89B2D00F3E05B /* PeakLocker.h */,
 				D2EFBCBF17E89B2D00F3E05B /* PeakLocker.m */,
 			);
 			name = PeakLocker;
 			path = ../PeakLocker;
 			sourceTree = "<group>";
+		};
+		D2EFBCC117E8A8AB00F3E05B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D2A6C8EF17E9F8F90005723D /* peaklocker_cancel.png */,
+				D2A6C8F017E9F8F90005723D /* peaklocker_cancel@2x.png */,
+				D2EFBCC217E8A8AB00F3E05B /* gesture_node_normal.png */,
+				D2EFBCC317E8A8AB00F3E05B /* gesture_node_normal@2x.png */,
+				D2EFBCC417E8A8AB00F3E05B /* gesture_node_selected.png */,
+				D2EFBCC517E8A8AB00F3E05B /* gesture_node_selected@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D2EFBCCA17E8B1D300F3E05B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D2EFBCCB17E8B1D300F3E05B /* background@2x.png */,
+			);
+			path = Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -263,11 +300,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2EFBCBB17E8998D00F3E05B /* Podfile in Resources */,
+				D2EFBCCC17E8B1D300F3E05B /* background@2x.png in Resources */,
 				D2EFBC9617E898AE00F3E05B /* Main_iPad.storyboard in Resources */,
+				D2EFBCC817E8A8AB00F3E05B /* gesture_node_selected.png in Resources */,
 				D2EFBC9B17E898AE00F3E05B /* Images.xcassets in Resources */,
 				D2EFBCB817E898CD00F3E05B /* README.md in Resources */,
 				D2EFBC9317E898AE00F3E05B /* Main_iPhone.storyboard in Resources */,
+				D2EFBCC917E8A8AB00F3E05B /* gesture_node_selected@2x.png in Resources */,
+				D2EFBCC717E8A8AB00F3E05B /* gesture_node_normal@2x.png in Resources */,
+				D2A6C8F217E9F8F90005723D /* peaklocker_cancel@2x.png in Resources */,
 				D2EFBCBD17E899A300F3E05B /* PeakLocker.podspec in Resources */,
+				D2A6C8F117E9F8F90005723D /* peaklocker_cancel.png in Resources */,
+				D2EFBCC617E8A8AB00F3E05B /* gesture_node_normal.png in Resources */,
 				D2EFBC8A17E898AE00F3E05B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +508,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PeakLocker-Samples/PeakLocker-Samples-Prefix.pch";
 				INFOPLIST_FILE = "PeakLocker-Samples/PeakLocker-Samples-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -478,6 +523,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PeakLocker-Samples/PeakLocker-Samples-Prefix.pch";
 				INFOPLIST_FILE = "PeakLocker-Samples/PeakLocker-Samples-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

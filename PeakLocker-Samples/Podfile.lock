@@ -1,21 +1,24 @@
 PODS:
   - KKGestureLockView (1.0.0)
+  - PeakCategory (0.1.0):
+    - UIView+Helpers
   - UIView+Helpers (1.3.0)
 
 DEPENDENCIES:
   - KKGestureLockView (from `https://github.com/kejinlu/KKGestureLockView.git`, branch `master`)
-  - UIView+Helpers (from `https://github.com/conis/UIView-Helpers.git`, branch `master`)
+  - PeakCategory (from `git@github.com:conis/PeakCategory.git`, branch `master`)
 
 EXTERNAL SOURCES:
   KKGestureLockView:
     :branch: master
     :git: https://github.com/kejinlu/KKGestureLockView.git
-  UIView+Helpers:
+  PeakCategory:
     :branch: master
-    :git: https://github.com/conis/UIView-Helpers.git
+    :git: git@github.com:conis/PeakCategory.git
 
 SPEC CHECKSUMS:
   KKGestureLockView: 4f00b3d9d4969e7fa3750b83f014a152399a0b58
+  PeakCategory: 3b75f1a120107c23f9052841c577a2fa88843e83
   UIView+Helpers: 9a9d8c9a698b1527728af0a3b4d8572b9a8fbd14
 
 COCOAPODS: 0.24.0

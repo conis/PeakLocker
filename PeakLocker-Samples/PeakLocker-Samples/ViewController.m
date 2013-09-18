@@ -36,6 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) peakLockerDidCancel:(PeakLocker *)locker type:(PeakLockerType)type{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void) peakLockerDidFinish:(PeakLocker *)locker type:(PeakLockerType)type password:(NSString *)password{
   NSString *msg = nil;
   switch (type) {
@@ -66,7 +70,7 @@
 
 - (IBAction)clickedChangePassword:(id)sender {
   PeakLocker *locker = [PeakLocker sharedManager];
-  [locker changePassword: NO];
+  [locker changePassword: YES];
   [self presentViewController: locker animated:YES completion:nil];
 }
 
