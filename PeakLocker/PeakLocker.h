@@ -48,12 +48,6 @@ extern NSString * const kPeakLockerUserDefaultPassword;
 @property (nonatomic, strong) UIImage *appIcon;
 //app的名称
 @property (nonatomic, strong) NSString *appName;
-//注册
-@property (nonatomic, strong) NSString *signupMessage;
-//登陆
-@property (nonatomic, strong) NSString *signinMessage;
-//修改密码
-@property (nonatomic, strong) NSString *changePasswordMessage;
 //单位时间最大允许尝试次数，0表示不限制
 @property (nonatomic) NSInteger maxTryCount;
 //最大尝试的单位时间，以分钟为单位
@@ -89,7 +83,8 @@ extern NSString * const kPeakLockerUserDefaultPassword;
 @optional
 //完成
 -(void) peakLockerDidFinish: (PeakLocker *) locker type: (PeakLockerType) type password: (NSString *) password;
-
+//取消
+-(void) peakLockerDidCancel: (PeakLocker *) locker type: (PeakLockerType) type;
 //校验密码是否正确（也可能是在修改密码的时候）
 -(BOOL) peakLockerValidateWithPassword: (NSString *) password;
 @end

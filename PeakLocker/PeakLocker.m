@@ -31,9 +31,11 @@ typedef enum{
 //显示信息的label
 @property (nonatomic, strong) UILabel *tipsLabel;
 //显示警告
-@property (nonatomic, strong) UILabel *warningLabel;
+//@property (nonatomic, strong) UILabel *warningLabel;
 //最后的提示时间
 @property (nonatomic, strong) NSDate *tipsDate;
+//取消按钮
+@property (nonatomic, strong) UIButton *cancelButton;
 @end
 
 @implementation PeakLocker
@@ -93,6 +95,7 @@ static PeakLocker *instance;
 -(void) createAppNameLabel{
   self.appNameLabel = [[UILabel alloc] init];
   self.appNameLabel.left = 10;
+  self.appNameLabel.backgroundColor = [UIColor clearColor];
   self.appNameLabel.width = self.headerView.width - self.appNameLabel.left * 2;
   self.appNameLabel.top = 25;
   self.appNameLabel.height = 60;
@@ -111,23 +114,37 @@ static PeakLocker *instance;
   self.tipsLabel.top = self.appNameLabel.bottomY;
   self.tipsLabel.width = self.appNameLabel.width;
   self.tipsLabel.height = 30;
+  self.tipsLabel.backgroundColor = [UIColor clearColor];
   self.tipsLabel.left = self.appNameLabel.left;
-  self.tipsLabel.textColor = [UIColor colorWithRed:102/255.f green:102/255.f blue:102/255.f alpha:1];
+  self.tipsLabel.textColor = [UIColor colorWithRed:4/255.f green:152/255.f blue:213/255.f alpha:1];
   [self.headerView addSubview: self.tipsLabel];
   
+  /*
   self.warningLabel = [[UILabel alloc] initWithFrame: self.tipsLabel.frame];
   self.warningLabel.top = self.tipsLabel.bottomY + 5;
   self.warningLabel.textColor = [UIColor colorWithRed:4/255.f green:152/255.f blue:213/255.f alpha:1];
   [self.headerView addSubview: self.warningLabel];
+  */
 }
 
 //创建Header部分
 -(void) createHeaderViw{
-  self.headerView = [[UIView alloc] initWithSize:CGSizeMake(self.view.frameSizeWidth, 160)];
+  self.headerView = [[UIView alloc] initWithSize:CGSizeMake(self.view.frameSizeWidth, 130)];
   self.headerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
   [self.view addSubview: self.headerView];
   
   [self createAppNameLabel];
+  
+  //创建取消按钮
+  self.cancelButton = [UIButton buttonWithType: UIButtonTypeCustom];
+  UIImage *cancelImage = [UIImage imageNamed: @"peaklocker_cancel"];
+  self.cancelButton.size = cancelImage.size;
+  [self.cancelButton setBackgroundImage: cancelImage forState:UIControlStateNormal];
+  self.cancelButton.showsTouchWhenHighlighted = YES;
+  [self.cancelButton addTarget:self action:@selector(clickedCancel: ) forControlEvents:UIControlEventTouchUpInside];
+  [self.headerView addSubview: self.cancelButton];
+  [self.cancelButton rightAlignForSuperView];
+  [self.cancelButton bottomAlignForSuperView];
 }
 
 //创建所有的组件
@@ -138,6 +155,13 @@ static PeakLocker *instance;
   [self createPatternLock];
   [self createHeaderViw];
   [self createInfoLabel];
+}
+
+//取消
+-(void) clickedCancel: (id) sender{
+  if(self.delegate && [self.delegate respondsToSelector:@selector(peakLockerDidCancel:type:)]){
+    [self.delegate peakLockerDidCancel:self type:self.type];
+  }
 }
 
 #pragma mark 属性相关
@@ -175,17 +199,18 @@ static PeakLocker *instance;
 }
 */
 //设置警告信息
+/*
 -(void) setwarning: (NSString *) warning{
   self.warningLabel.text = warning;
   self.warningLabel.alpha = 1;
-  /*
   
-  self.tipsDate = [NSDate date];
+  
+  //self.tipsDate = [NSDate date];
   //设置5秒钟后关闭
-  [self performSelector:@selector(hideWarning) withObject:nil afterDelay:10];
-  */
+  //[self performSelector:@selector(hideWarning) withObject:nil afterDelay:10];
 }
-
+ 
+*/
 //重置控件的位置，一般在旋转的时候调用
 -(void) resetSubviews{
   //设置模式解锁的位置
@@ -207,7 +232,7 @@ static PeakLocker *instance;
   }
     
   if(!result){
-    [self setwarning: @"您的密码错误"];
+    [self setTips: @"您的密码校验未能通过"];
   }
   
   return result;
@@ -247,8 +272,6 @@ static PeakLocker *instance;
       self.lastPassword = password;
       //变更状态
       [self changeToStatus: PeakLockerStatusConfirm];
-    }else{
-      [self setwarning: @"您的密码太短"];
     }
     return result;
   }
@@ -264,7 +287,7 @@ static PeakLocker *instance;
     }else{
       //回滚状态
       [self changeToStatus: PeakLockerStatusNew];
-      [self setwarning: @"您两次设置的密码不一致"];
+      [self setTips: @"您两次设定的密码不一致"];
     }
     
     return isSame;
@@ -288,7 +311,8 @@ static PeakLocker *instance;
   BOOL result = length >= self.minimumLength;
   if(!result){
     //提示用户
-    [self setwarning: @"密码太短"];
+    NSString *tips = [NSString stringWithFormat: @"至少连接%d个点", self.minimumLength];
+    [self setTips: tips];
   }
   return result;
 }
@@ -336,9 +360,7 @@ static PeakLocker *instance;
 
 #pragma mark 模式解锁的委托
 - (void)gestureLockView:(KKGestureLockView *)gestureLockView didBeginWithPasscode:(NSString *)passcode{
-  [UIView animateWithDuration:0.3 animations:^{
-    self.warningLabel.alpha = 0;
-  }];
+  [self setTips:@"完成时松开手指"];
 }
 
 //手势结束
@@ -381,28 +403,29 @@ static PeakLocker *instance;
   }
   
   //到达新的状态，需要清除warning
-  [self setwarning: nil];
+  //[self setwarning: nil];
   [self setTips: tips];
 }
 
 //开始锁定
--(void) startLocker: (PeakLockerType) lockerType status: (PeakLockerStatus) status{
+-(void) startLocker: (PeakLockerType) lockerType status: (PeakLockerStatus) status cancel: (BOOL) cancel{
   [self resetSubviews];
+  self.cancelButton.hidden = !cancel;
   self.type = lockerType;
   [self changeToStatus: status];
 }
 
 #pragma mark 公有方法
 -(void) signup:(BOOL)cancel{
-  [self startLocker: PeakLockerTypeSignup status:PeakLockerStatusNew];
+  [self startLocker: PeakLockerTypeSignup status:PeakLockerStatusNew cancel:cancel];
 }
 
 -(void) signin:(BOOL)cancel{
-  [self startLocker: PeakLockerTypeSignin status:PeakLockerStatusBegin];
+  [self startLocker: PeakLockerTypeSignin status:PeakLockerStatusBegin cancel:cancel];
 }
 
 -(void) changePassword:(BOOL)cancel{
-  [self startLocker: PeakLockerTypeChangePassword status:PeakLockerStatusBegin];
+  [self startLocker: PeakLockerTypeChangePassword status:PeakLockerStatusBegin cancel:cancel];
 }
 
 #pragma  makr 与UserDefaults相关
