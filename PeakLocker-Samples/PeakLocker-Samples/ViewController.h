@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PeakLocker.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<PeakLockerDelegate>
 
 @end
