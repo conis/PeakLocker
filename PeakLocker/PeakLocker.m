@@ -167,6 +167,7 @@ static PeakLocker *instance;
 
 //取消
 -(void) clickedCancel: (id) sender{
+  self.shown = NO;
   //通知取消
   if(self.delegate && [self.delegate respondsToSelector:@selector(peakLockerDidCancel:type:)]){
     [self.delegate peakLockerDidCancel:self type:self.type];
@@ -276,6 +277,7 @@ static PeakLocker *instance;
 
 //成功地完成某个设置
 -(void) completedWithSuccess: (NSString *) password{
+  self.shown = NO;
   //通知委托，密码已经设置成功
   if(self.delegate && [self.delegate respondsToSelector: @selector(peakLockerDidFinish: type: password: )]){
     [self.delegate peakLockerDidFinish: self type: self.type password: password];
@@ -434,6 +436,7 @@ static PeakLocker *instance;
 
 //开始锁定
 -(void) startLocker: (PeakLockerType) lockerType status: (PeakLockerStatus) status cancel: (BOOL) cancel{
+  self.shown = YES;
   [self resetSubviews];
   self.cancelButton.hidden = !cancel;
   self.type = lockerType;

@@ -32,7 +32,7 @@ typedef enum{
 @interface PeakLocker : UIViewController<KKGestureLockViewDelegate>
 
 //校验完成成功的通知
-extern NSString * const kPeakLockerNotificationValidation;
+extern NSString * const kPeakLockerNotificationFinish;
 extern NSString * const kPeakLockerUserDefaultPassword;
 extern NSString * const kPeakLockerNotificationCancel;
 extern NSString * const kPeakLockerType;
@@ -65,7 +65,8 @@ extern NSString * const kPeakLockerType;
 @property (nonatomic, strong) UIImage *patternLockHighlightImage;
 //解锁的类型
 @property (nonatomic) PeakLockerPanel lockerPanel;
-
+//已经显示
+@property (nonatomic) BOOL shown;
 @property (nonatomic, strong) UIViewController *rootViewController;
 //清除所保存的密码，如果是使用PeakLocker保存密码的话
 -(void) removePassword;
@@ -80,7 +81,7 @@ extern NSString * const kPeakLockerType;
 //-(void) changeLockerType: (PeakLockerType) lockerType;
 //锁定屏幕
 -(void) lockup;
-+(id) sharedManager;
++(PeakLocker *) sharedManager;
 @end
 
 @protocol PeakLockerDelegate <NSObject>
