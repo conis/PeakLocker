@@ -36,11 +36,14 @@ typedef enum{
 @property (nonatomic, strong) NSDate *tipsDate;
 //取消按钮
 @property (nonatomic, strong) UIButton *cancelButton;
+
+extern NSString * const kPeakLockerRememberPassword;
 @end
 
 @implementation PeakLocker
 NSString * const kPeakLockerUserDefaultPassword = @"PeakLockerUserDefaultPassword";
 NSString * const kPeakLockerNotificationValidation = @"PeakLockerNotificationValidation";
+NSString * const kPeakLockerRememberPassword = @"PeakLockerRememberPassword";
 
 static PeakLocker *instance;
 
@@ -73,7 +76,10 @@ static PeakLocker *instance;
   //self.lockerType = PeakLockerPattern;
   
   self.modalPresentationStyle = UIModalPresentationFullScreen;
-  self.view.backgroundColor = [UIColor grayColor];
+  self.view.backgroundColor = [UIColor whiteColor];
+  
+  //是否记住密码
+  self.isRememberPassword = [[self getUserDefaults: kPeakLockerRememberPassword] boolValue];
 }
 
 //创建模式解锁
@@ -180,6 +186,12 @@ static PeakLocker *instance;
 -(BOOL) isEmptyPassword:(BOOL)isEmptyPassword{
   NSString *password = [self getUserDefaults: kPeakLockerUserDefaultPassword];
   return password.length == 0;
+}
+
+//记住密码
+-(void) setIsRememberPassword:(BOOL)isRememberPassword{
+  _isRememberPassword = isRememberPassword;
+  [self setUserDefaults:kPeakLockerRememberPassword value:[NSNumber numberWithBool: isRememberPassword]];
 }
 
 //设置提示
@@ -428,6 +440,18 @@ static PeakLocker *instance;
   [self startLocker: PeakLockerTypeChangePassword status:PeakLockerStatusBegin cancel:cancel];
 }
 
+//锁定
+-(void) lockup{
+  //还没有设置密码
+  if(self.isEmptyPassword){
+    [self signup: NO];
+  }else{
+    //只有在不记住密码的情况下，lockup才会弹出signin
+    if(!self.isRememberPassword){
+      [self signin: NO];
+    }
+  }
+}
 #pragma  makr 与UserDefaults相关
 //设置用户的默认配置
 -(void) setUserDefaults:(NSString *)key value:(id)value

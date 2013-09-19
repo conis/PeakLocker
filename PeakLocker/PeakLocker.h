@@ -37,6 +37,8 @@ extern NSString * const kPeakLockerUserDefaultPassword;
 
 //是否为空密码，即未设置密码
 @property (nonatomic) BOOL isEmptyPassword;
+//是否记住密码
+@property (nonatomic) BOOL isRememberPassword;
 
 @property (nonatomic, strong) UIColor *appNameTextColor;
 @property (nonatomic, weak) id<PeakLockerDelegate> delegate;
@@ -75,7 +77,8 @@ extern NSString * const kPeakLockerUserDefaultPassword;
 -(void) changePassword: (BOOL) cancel;
 //切换密码校验方式
 //-(void) changeLockerType: (PeakLockerType) lockerType;
-
+//锁定屏幕
+-(void) lockup;
 +(id) sharedManager;
 @end
 
