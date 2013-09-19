@@ -72,7 +72,7 @@
 		D2EFBCAB17E898AE00F3E05B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2EFBCAD17E898AE00F3E05B /* PeakLocker_SamplesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeakLocker_SamplesTests.m; sourceTree = "<group>"; };
 		D2EFBCB717E898CD00F3E05B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
-		D2EFBCBA17E8998D00F3E05B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		D2EFBCBA17E8998D00F3E05B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D2EFBCBC17E899A300F3E05B /* PeakLocker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PeakLocker.podspec; path = ../../PeakLocker.podspec; sourceTree = "<group>"; };
 		D2EFBCBE17E89B2D00F3E05B /* PeakLocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakLocker.h; sourceTree = "<group>"; };
 		D2EFBCBF17E89B2D00F3E05B /* PeakLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakLocker.m; sourceTree = "<group>"; };
