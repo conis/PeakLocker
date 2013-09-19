@@ -67,6 +67,9 @@ extern NSString * const kPeakLockerType;
 @property (nonatomic) PeakLockerPanel lockerPanel;
 //已经显示
 @property (nonatomic) BOOL shown;
+//模式解锁线的颜色
+@property (nonatomic, strong) UIColor *patternLockLineColor;
+
 @property (nonatomic, strong) UIViewController *rootViewController;
 //清除所保存的密码，如果是使用PeakLocker保存密码的话
 -(void) removePassword;

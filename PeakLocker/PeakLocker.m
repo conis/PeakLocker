@@ -206,11 +206,16 @@ static PeakLocker *instance;
   _appNameTextColor = appNameTextColor;
   self.appNameLabel.textColor = appNameTextColor;
 }
+
 //设置提示
 -(void) setTips: (NSString *) tips{
   self.tipsLabel.text = tips;
 }
 
+-(void) setPatternLockLineColor:(UIColor *)patternLockLineColor{
+  _patternLockLineColor = patternLockLineColor;
+  self.patternLock.lineColor = patternLockLineColor;
+}
 /*
 -(void) hideWarning{
   if([[NSDate date] timeIntervalSinceDate: self.tipsDate] < 10){
