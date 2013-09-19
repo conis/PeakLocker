@@ -42,7 +42,7 @@ extern NSString * const kPeakLockerRememberPassword;
 
 @implementation PeakLocker
 NSString * const kPeakLockerUserDefaultPassword = @"PeakLockerUserDefaultPassword";
-NSString * const kPeakLockerNotificationValidation = @"PeakLockerNotificationValidation";
+NSString * const kPeakLockerNotificationFinish = @"PeakLockerNotificationFinish";
 NSString * const kPeakLockerRememberPassword = @"PeakLockerRememberPassword";
 
 static PeakLocker *instance;
@@ -183,7 +183,7 @@ static PeakLocker *instance;
 }
 
 //是否为空密码，即未设置密码
--(BOOL) isEmptyPassword:(BOOL)isEmptyPassword{
+-(BOOL) isEmptyPassword{
   NSString *password = [self getUserDefaults: kPeakLockerUserDefaultPassword];
   return password.length == 0;
 }
@@ -227,7 +227,9 @@ static PeakLocker *instance;
 -(void) resetSubviews{
   //设置模式解锁的位置
   CGFloat margin = 30;
-  CGRect rect = CGRectMake(margin, self.headerView.bottomY + margin, self.view.width - margin * 2, self.view.height - self.headerView.bottomY - margin * 2);
+  CGFloat height = 300;
+  CGFloat top = (self.view.height - self.headerView.bottomY - height) / 2 + self.headerView.bottomY;
+  CGRect rect = CGRectMake(margin, top, self.view.width - margin * 2, height);
   self.patternLock.frame = rect;
 }
 
@@ -271,6 +273,7 @@ static PeakLocker *instance;
   if(self.delegate && [self.delegate respondsToSelector: @selector(peakLockerDidFinish: type: password: )]){
     [self.delegate peakLockerDidFinish: self type: self.type password: password];
   }
+  
 }
 
 //创建新密码，需要检查两次密码是否一致
