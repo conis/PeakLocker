@@ -202,6 +202,10 @@ static PeakLocker *instance;
   [self setUserDefaults:kPeakLockerRememberPassword value:[NSNumber numberWithBool: isRememberPassword]];
 }
 
+-(void) setAppNameTextColor:(UIColor *)appNameTextColor{
+  _appNameTextColor = appNameTextColor;
+  self.appNameLabel.textColor = appNameTextColor;
+}
 //设置提示
 -(void) setTips: (NSString *) tips{
   self.tipsLabel.text = tips;
