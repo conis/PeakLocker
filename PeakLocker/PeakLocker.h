@@ -34,7 +34,8 @@ typedef enum{
 //校验完成成功的通知
 extern NSString * const kPeakLockerNotificationValidation;
 extern NSString * const kPeakLockerUserDefaultPassword;
-
+extern NSString * const kPeakLockerNotificationCancel;
+extern NSString * const kPeakLockerType;
 //是否为空密码，即未设置密码
 @property (nonatomic) BOOL isEmptyPassword;
 //是否记住密码

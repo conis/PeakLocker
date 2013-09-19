@@ -43,7 +43,9 @@ extern NSString * const kPeakLockerRememberPassword;
 @implementation PeakLocker
 NSString * const kPeakLockerUserDefaultPassword = @"PeakLockerUserDefaultPassword";
 NSString * const kPeakLockerNotificationFinish = @"PeakLockerNotificationFinish";
+NSString * const kPeakLockerNotificationCancel = @"PeakLockerNotificationCancel";
 NSString * const kPeakLockerRememberPassword = @"PeakLockerRememberPassword";
+NSString * const kPeakLockerType = @"type";
 
 static PeakLocker *instance;
 
@@ -165,9 +167,14 @@ static PeakLocker *instance;
 
 //取消
 -(void) clickedCancel: (id) sender{
+  //通知取消
   if(self.delegate && [self.delegate respondsToSelector:@selector(peakLockerDidCancel:type:)]){
     [self.delegate peakLockerDidCancel:self type:self.type];
   }
+  
+  //添加通知事件
+  NSDictionary *info = @{kPeakLockerType: [NSNumber numberWithInt:self.type]};
+  [[NSNotificationCenter defaultCenter] postNotificationName: kPeakLockerNotificationCancel object:info];
 }
 
 #pragma mark 属性相关
@@ -274,6 +281,9 @@ static PeakLocker *instance;
     [self.delegate peakLockerDidFinish: self type: self.type password: password];
   }
   
+  //添加通知事件
+  NSDictionary *info = @{kPeakLockerType: [NSNumber numberWithInt:self.type]};
+  [[NSNotificationCenter defaultCenter] postNotificationName: kPeakLockerNotificationFinish object:info];
 }
 
 //创建新密码，需要检查两次密码是否一致
